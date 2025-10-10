@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyftfumjvj1o3"]
+
+[ext_resource type="Script" uid="uid://lfhkt3yju6a2" path="res://sprite_2d.gd" id="1_4flbx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sh265"]
+radius = 7.0
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sh265")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+script = ExtResource("1_4flbx")
