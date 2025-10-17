@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://csia1o5df2afr"]
+[gd_scene load_steps=7 format=3 uid="uid://csia1o5df2afr"]
 
 [ext_resource type="PackedScene" uid="uid://cyftfumjvj1o3" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://b1b0dvb4rqovb" path="res://Brickwall5_Texture.png" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://tw2ld8up8j6o" path="res://player.gd" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://hhu02tqws0vw" path="res://Rythm.tscn" id="4_fc0e3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("2_e2o6t")
@@ -4205,5 +4206,7 @@ layer_0/tile_data = PackedInt32Array(655342, 1048577, 6, 655343, 1048577, 6, 655
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Rythm" parent="." instance=ExtResource("4_fc0e3")]
 
 [connection signal="timeout" from="Timer" to="Player" method="_on_timer_timeout"]
