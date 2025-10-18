@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
-
+@onready var rythm = get_parent().get_node("Rythm")
 var speed = 130.0
 const JUMP_VELOCITY = -300.0
 var canMove = false
-
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -34,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 	
 
-	match canMove:
+	match rythm.canMove:
 		true: 
 			if(Input.is_action_pressed("Dash") ):
 			#if(Inout.is_action_just_pressed
@@ -44,8 +43,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_timer_timeout() -> void:
-	canMove = true
-	await get_tree().create_timer(0.2).timeout
-	canMove = false
+#func _on_timer_timeout() -> void:
+	#canMove = true
+	#await get_tree().create_timer(0.2).timeout
+	#canMove = false
 	
