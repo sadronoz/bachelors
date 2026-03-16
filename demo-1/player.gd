@@ -9,7 +9,6 @@ var move_time = 0.0
 var move_duration = 0.1   # délka pohybu v sekundách
 var move_direction = Vector2.ZERO
 
-
 func _physics_process(delta: float) -> void:
 	if move_time > 0:
 		move_time -= delta
