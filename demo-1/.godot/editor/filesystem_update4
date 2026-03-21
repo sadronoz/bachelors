@@ -1,4 +1,6 @@
-res://game.tscn
-res://rythm.gd
-res://Rythm.tscn
-res://player.tscn
+res://Scenes/UI/title_screen.tscn
+res://Scripts/title_screen.gd
+res://Scenes/Game/game.tscn
+res://Scenes/Game/Rythm.tscn
+res://Scenes/Game/player.tscn
+res://Scripts/rythm.gd

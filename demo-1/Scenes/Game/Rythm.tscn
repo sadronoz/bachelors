@@ -1,13 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://hhu02tqws0vw"]
+[gd_scene load_steps=2 format=3 uid="uid://c8t0d3egcu7he"]
 
-[ext_resource type="Script" uid="uid://dxkf55gopkb71" path="res://rythm.gd" id="1_vphmk"]
+[ext_resource type="Script" uid="uid://cht5fo4t4oxw0" path="res://Scripts/rythm.gd" id="1_vphmk"]
 
 [node name="Rythm" type="Node2D"]
 script = ExtResource("1_vphmk")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
-autostart = true
 
 [node name="Sounds" type="Node2D" parent="."]
 

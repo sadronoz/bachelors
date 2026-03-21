@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://csia1o5df2afr"]
+[gd_scene load_steps=8 format=3 uid="uid://c20at4nquad1q"]
 
-[ext_resource type="PackedScene" uid="uid://cyftfumjvj1o3" path="res://player.tscn" id="1_80nbo"]
-[ext_resource type="Texture2D" uid="uid://b1b0dvb4rqovb" path="res://Brickwall5_Texture.png" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://tw2ld8up8j6o" path="res://player.gd" id="2_feb5d"]
-[ext_resource type="PackedScene" uid="uid://hhu02tqws0vw" path="res://Rythm.tscn" id="4_fc0e3"]
-[ext_resource type="Script" uid="uid://b3cbi6eoih2tc" path="res://action_gate.gd" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://0elh6scifikw" path="res://Scenes/Game/player.tscn" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://ckl30s2l8ct2v" path="res://Brickwall5_Texture.png" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://caxv6sri0324u" path="res://Scripts/player.gd" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://c8t0d3egcu7he" path="res://Scenes/Game/Rythm.tscn" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://b7w004ca7106m" path="res://Scripts/action_gate.gd" id="5_7jktm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("2_e2o6t")
