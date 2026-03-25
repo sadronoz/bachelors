@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi2t8f76wxrww"]
+
+[ext_resource type="Script" uid="uid://ceivfu4xesxlv" path="res://DungeonGenerator.gd" id="1_ftv0x"]
+[ext_resource type="PackedScene" uid="uid://d03ak0uvk1hlb" path="res://Room.tscn" id="2_djwra"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ftv0x")
+room_scene = ExtResource("2_djwra")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://d03ak0uvk1hlb"]
+
+[ext_resource type="Script" uid="uid://clrboognvp44e" path="res://Room.gd" id="1_gw2vq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5ruuo"]
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_gw2vq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.6745098, 0.3372549, 0.6745098, 1)
+scale = Vector2(300, 300)
+texture = SubResource("CanvasTexture_5ruuo")
+
+[node name="North" type="Marker2D" parent="."]
+position = Vector2(0, -150)
+
+[node name="East" type="Marker2D" parent="."]
+position = Vector2(150, 0)
+
+[node name="West" type="Marker2D" parent="."]
+position = Vector2(-150, 0)
+
+[node name="South" type="Marker2D" parent="."]
+position = Vector2(0, 150)
