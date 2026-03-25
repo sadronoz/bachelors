@@ -3,17 +3,15 @@ var canMove = false
 
 var beatMap = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var files = []
-var rawbeatmap = []
-
+#var rawbeatmap = []
 var oncomingIndex
+var rng = RandomNumberGenerator.new()
 
-#@onready var title = get_parent().get_node("TitleScreen")
 @onready var beatTimer = get_node("Timer")
-
+@onready var vignette = $"../BeatVisualisation/Vignette"
 var lenghtBetweenBeats
 var tolerance
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_sounds()
 	lenghtBetweenBeats = beatTimer.wait_time
@@ -21,33 +19,32 @@ func _ready() -> void:
 	oncomingIndex = 0	
 	beatTimer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-#rawbeatmap is rythm encoded in only 0/1
-func _changeRythm(rawbeatmap):
-	get_nth_sound(0)
-	for b in rawbeatmap.size():
-		if rawbeatmap[b] == 1:
-			var rng = RandomNumberGenerator.new()
-			beatMap[b] = rng.randi_range(1, files.size())
-
-#Check for movement and other actions
-func isWithinBeatWindow():
-	return canMove
-
-#Timer
 func _on_timer_timeout() -> void:
+	updateIndex()
+	decide_tolerance_for_interval()
 	if beatMap[oncomingIndex] > 0 :
 		canMove = true
-		await get_tree().create_timer(tolerance/2).timeout
+		print(tolerance/2)
 		playSound()
-		await get_tree().create_timer(tolerance/2).timeout
-		
-		canMove = false
-	updateIndex()
+		await get_tree().create_timer(tolerance).timeout
+		Singleton.set_move_time()
+		canMove = false	
 	beatTimer.start()
+
+func isWithinBeatWindow():
+	return canMove
+	
+
+func _changeRythm(rawbeatmap):	
+	for b in rawbeatmap.size():
+		if rawbeatmap[b] == 1:
+			beatMap[b] = rng.randi_range(1, files.size())
+	print (beatMap)
+
+
+
+#Timer
+
 
 #Deciding what to do next beat window
 func updateIndex():
@@ -57,7 +54,7 @@ func updateIndex():
 		oncomingIndex += 1
 
 func get_sounds():
-	var dir = DirAccess.open("res://Sounds/")
+	var dir = DirAccess.open(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/RhythmGame/Sounds")
 		
 	if dir:
 		dir.list_dir_begin()
@@ -74,13 +71,14 @@ func get_sounds():
 
 #Loading sound from directory
 func get_nth_sound(n: int):
-	if n < files.size():
-		return "res://sounds/" + files[n]
+	if n <= files.size():
+		return OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/RhythmGame/Sounds/" + files[n-1]
 	return null
 
 #Playing correct sound
 func playSound():
-	var sound_path = get_nth_sound(beatMap[oncomingIndex]-1)
+	flash_border()
+	var sound_path = get_nth_sound(beatMap[oncomingIndex])
 	print(sound_path)
 	
 	if sound_path:
@@ -90,5 +88,35 @@ func playSound():
 		$Sounds/Drums.stream = load(get_nth_sound(0))
 		$Sounds/Drums.play()
 
+func decide_tolerance_for_interval():
+	var size = beatMap.size()
+	var distance = 1
+	
+	while true:
+		var index = (oncomingIndex + distance) % size
+		
+		if beatMap[index] >= 1:
+			break
+		
+		distance += 1
+		
+		if distance > size:
+			tolerance = lenghtBetweenBeats / 2
+			return
+	
+	tolerance = lenghtBetweenBeats * distance / 2
+
 func _on_drums_finished() -> void:
 	$Sounds/Drums.stop()
+
+func flash_border(duration: float = 0.5):
+	# Pokud chceš měnit barvu dynamicky (volitelné):
+	#vignette.material.set_shader_parameter("color", color)
+	
+	var tween = create_tween()
+	
+	# 1. Rychle rozsvítit na alfu 1.0
+	tween.tween_property(vignette, "modulate:a", 1.0, 0.1)
+	
+	# 2. Pomalu zhasnout na alfu 0.0
+	tween.tween_property(vignette, "modulate:a", 0.0, duration).set_trans(Tween.TRANS_SINE)

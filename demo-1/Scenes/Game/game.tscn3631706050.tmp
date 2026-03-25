@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://c20at4nquad1q"]
+
+[ext_resource type="PackedScene" uid="uid://0elh6scifikw" path="res://Scenes/Game/player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://5lgch4bxvih3" path="res://Scripts/dungeonGenerator.gd" id="1_huoen"]
+[ext_resource type="TileSet" uid="uid://do1x4mgo53wm6" path="res://main_tileset.tres" id="1_xfil1"]
+[ext_resource type="Script" uid="uid://caxv6sri0324u" path="res://Scripts/player.gd" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://c8t0d3egcu7he" path="res://Scenes/Game/Rythm.tscn" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://b7w004ca7106m" path="res://Scripts/action_gate.gd" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://bwsjvy8wbicoo" path="res://Scenes/Game/enemy.tscn" id="5_flgk0"]
+[ext_resource type="Shader" uid="uid://cmrrh8f2dc6pt" path="res://Shader/game.gdshader" id="8_huoen"]
+[ext_resource type="PackedScene" uid="uid://bjuc0jxy2wt31" path="res://Scenes/Game/Room.tscn" id="8_xfil1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jvlm"]
+shader = ExtResource("8_huoen")
+shader_parameter/color = Color(0.792157, 0.811765, 0, 0.807843)
+shader_parameter/multiplier = 0.302
+shader_parameter/softness = 2.235
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_huoen")
+room_scene = ExtResource("8_xfil1")
+room_size = Vector2(288, 160)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_xfil1")
+format = 2
+layer_0/tile_data = PackedInt32Array(655342, 1048577, 6, 655343, 1048577, 6, 655344, 1048577, 6, 655345, 1048577, 6, 655346, 1048577, 6, 655347, 1048577, 6, 655348, 1048577, 6, 655349, 1048577, 6, 655350, 1048577, 6, 655351, 1048577, 6, 655352, 1048577, 6, 655353, 1048577, 6, 655354, 1048577, 6, 655355, 1048577, 6, 655356, 1048577, 6, 655357, 1048577, 6, 655358, 1048577, 6, 655359, 1048577, 6, 589824, 1048577, 6, 589825, 1048577, 6, 589826, 1048577, 6, 589827, 1048577, 6, 589828, 1048577, 6, 589829, 1048577, 6, 589830, 1048577, 6, 589831, 1048577, 6, 589832, 1048577, 6, 589833, 1048577, 6, 589834, 1048577, 6, 589835, 1048577, 6, 589836, 1048577, 6, 589837, 1048577, 6, 589838, 1048577, 6, 589839, 1048577, 6, 589840, 1048577, 6, 589841, 1048577, 6, -655343, 1048577, 6, -589807, 1048577, 6, -524271, 1048577, 6, -458735, 1048577, 6, -393199, 1048577, 6, -327663, 1048577, 6, -262127, 1048577, 6, -196591, 1048577, 6, -131055, 1048577, 6, -65519, 1048577, 6, 17, 1048577, 6, 65553, 1048577, 6, 131089, 1048577, 6, 196625, 1048577, 6, 262161, 1048577, 6, 327697, 1048577, 6, 393233, 1048577, 6, 458769, 1048577, 6, 524305, 1048577, 6, -589842, 1048577, 6, -589841, 1048577, 6, -589840, 1048577, 6, -589839, 1048577, 6, -589838, 1048577, 6, -589837, 1048577, 6, -589836, 1048577, 6, -589835, 1048577, 6, -589834, 1048577, 6, -589833, 1048577, 6, -589832, 1048577, 6, -589831, 1048577, 6, -589830, 1048577, 6, -589829, 1048577, 6, -589828, 1048577, 6, -589827, 1048577, 6, -589826, 1048577, 6, -589825, 1048577, 6, -655360, 1048577, 6, -655359, 1048577, 6, -655358, 1048577, 6, -655357, 1048577, 6, -655356, 1048577, 6, -655355, 1048577, 6, -655354, 1048577, 6, -655353, 1048577, 6, -655352, 1048577, 6, -655351, 1048577, 6, -655350, 1048577, 6, -655349, 1048577, 6, -655348, 1048577, 6, -655347, 1048577, 6, -655346, 1048577, 6, -655345, 1048577, 6, -655344, 1048577, 6, -524306, 1048577, 6, -458770, 1048577, 6, -393234, 1048577, 6, -327698, 1048577, 6, -262162, 1048577, 6, -196626, 1048577, 6, -131090, 1048577, 6, -65554, 1048577, 6, -18, 1048577, 6, 65518, 1048577, 6, 131054, 1048577, 6, 196590, 1048577, 6, 262126, 1048577, 6, 327662, 1048577, 6, 393198, 1048577, 6, 458734, 1048577, 6, 524270, 1048577, 6, 589806, 1048577, 6)
+
+[node name="Rythm" parent="." instance=ExtResource("4_fc0e3")]
+
+[node name="Entity" type="Node2D" parent="."]
+
+[node name="Player" parent="Entity" instance=ExtResource("1_80nbo")]
+position = Vector2(57, 17)
+script = ExtResource("2_feb5d")
+
+[node name="Enemy" parent="Entity" instance=ExtResource("5_flgk0")]
+position = Vector2(-88, -47)
+
+[node name="ActionGate" type="Node2D" parent="."]
+script = ExtResource("5_7jktm")
+
+[node name="BeatVisualisation" type="CanvasLayer" parent="."]
+
+[node name="Vignette" type="ColorRect" parent="BeatVisualisation"]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+material = SubResource("ShaderMaterial_7jvlm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

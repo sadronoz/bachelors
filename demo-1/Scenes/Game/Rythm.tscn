@@ -11,6 +11,8 @@ wait_time = 0.2
 [node name="Sounds" type="Node2D" parent="."]
 
 [node name="Drums" type="AudioStreamPlayer" parent="Sounds"]
+volume_db = 1.0
+max_polyphony = 10
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="Sounds/Drums" to="." method="_on_drums_finished"]

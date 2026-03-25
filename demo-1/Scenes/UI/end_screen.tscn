@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdx3jduqrtrr1"]
+
+[ext_resource type="Script" uid="uid://jq3dhrb327u5" path="res://Scripts/end_screen.gd" id="1_8nohl"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8nohl")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.692
+anchor_right = 0.5
+anchor_bottom = 0.692
+offset_left = -208.0
+offset_top = -19.416
+offset_right = 204.0
+offset_bottom = 19.584
+text = "Close the game"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.362
+anchor_right = 0.5
+anchor_bottom = 0.362
+offset_left = -37.0
+offset_top = -11.576
+offset_right = 35.0
+offset_bottom = 11.424
+text = "You died!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
