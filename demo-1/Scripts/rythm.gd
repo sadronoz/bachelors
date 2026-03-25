@@ -4,16 +4,13 @@ var canMove = false
 var beatMap = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var files = []
 var rawbeatmap = []
-
 var oncomingIndex
+var rng = RandomNumberGenerator.new()
 
-#@onready var title = get_parent().get_node("TitleScreen")
 @onready var beatTimer = get_node("Timer")
-
 var lenghtBetweenBeats
 var tolerance
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_sounds()
 	lenghtBetweenBeats = beatTimer.wait_time
@@ -21,33 +18,31 @@ func _ready() -> void:
 	oncomingIndex = 0	
 	beatTimer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-#rawbeatmap is rythm encoded in only 0/1
-func _changeRythm(rawbeatmap):
-	get_nth_sound(0)
-	for b in rawbeatmap.size():
-		if rawbeatmap[b] == 1:
-			var rng = RandomNumberGenerator.new()
-			beatMap[b] = rng.randi_range(1, files.size())
-
-#Check for movement and other actions
-func isWithinBeatWindow():
-	return canMove
-
-#Timer
 func _on_timer_timeout() -> void:
+	updateIndex()
+	decide_tolerance_for_interval()
 	if beatMap[oncomingIndex] > 0 :
 		canMove = true
-		await get_tree().create_timer(tolerance/2).timeout
+		print(tolerance/2)
 		playSound()
-		await get_tree().create_timer(tolerance/2).timeout
-		
-		canMove = false
-	updateIndex()
+		await get_tree().create_timer(tolerance).timeout
+		canMove = false	
 	beatTimer.start()
+
+func isWithinBeatWindow():
+	return canMove
+	
+
+func _changeRythm(rawbeatmap):	
+	for b in rawbeatmap.size():
+		if rawbeatmap[b] == 1:
+			beatMap[b] = rng.randi_range(1, files.size())
+	print (beatMap)
+
+
+
+#Timer
+
 
 #Deciding what to do next beat window
 func updateIndex():
@@ -74,13 +69,13 @@ func get_sounds():
 
 #Loading sound from directory
 func get_nth_sound(n: int):
-	if n < files.size():
-		return "res://sounds/" + files[n]
+	if n <= files.size():
+		return "res://sounds/" + files[n-1]
 	return null
 
 #Playing correct sound
 func playSound():
-	var sound_path = get_nth_sound(beatMap[oncomingIndex]-1)
+	var sound_path = get_nth_sound(beatMap[oncomingIndex])
 	print(sound_path)
 	
 	if sound_path:
@@ -89,6 +84,24 @@ func playSound():
 	else:
 		$Sounds/Drums.stream = load(get_nth_sound(0))
 		$Sounds/Drums.play()
+
+func decide_tolerance_for_interval():
+	var size = beatMap.size()
+	var distance = 1
+	
+	while true:
+		var index = (oncomingIndex + distance) % size
+		
+		if beatMap[index] >= 1:
+			break
+		
+		distance += 1
+		
+		if distance > size:
+			tolerance = lenghtBetweenBeats / 2
+			return
+	
+	tolerance = lenghtBetweenBeats * distance / 2
 
 func _on_drums_finished() -> void:
 	$Sounds/Drums.stop()
