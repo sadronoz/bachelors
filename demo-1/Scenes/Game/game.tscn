@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c20at4nquad1q"]
+[gd_scene load_steps=10 format=3 uid="uid://c20at4nquad1q"]
 
 [ext_resource type="PackedScene" uid="uid://0elh6scifikw" path="res://Scenes/Game/player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://ckl30s2l8ct2v" path="res://Brickwall5_Texture.png" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://caxv6sri0324u" path="res://Scripts/player.gd" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c8t0d3egcu7he" path="res://Scenes/Game/Rythm.tscn" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://b7w004ca7106m" path="res://Scripts/action_gate.gd" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://bwsjvy8wbicoo" path="res://Scenes/Game/enemy.tscn" id="5_flgk0"]
+[ext_resource type="Script" uid="uid://cx0xlri8mjls4" path="res://Scripts/enemy.gd" id="6_vifcx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_feb5d"]
 texture = ExtResource("2_e2o6t")
@@ -4208,6 +4210,14 @@ layer_0/tile_data = PackedInt32Array(655342, 1048577, 6, 655343, 1048577, 6, 655
 [node name="Player" parent="Entity" instance=ExtResource("1_80nbo")]
 position = Vector2(57, 17)
 script = ExtResource("2_feb5d")
+
+[node name="Enemy" parent="Entity" instance=ExtResource("5_flgk0")]
+position = Vector2(-81, -40)
+script = ExtResource("6_vifcx")
+
+[node name="Enemy2" parent="Entity" instance=ExtResource("5_flgk0")]
+position = Vector2(-81, 41)
+script = ExtResource("6_vifcx")
 
 [node name="ActionGate" type="Node2D" parent="."]
 script = ExtResource("5_7jktm")

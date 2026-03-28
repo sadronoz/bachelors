@@ -15,6 +15,10 @@ run/main_scene="uid://db3h16b3tsopt"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Singleton="*res://Scripts/Singleton.gd"
+
 [input]
 
 Move_left={

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://0elh6scifikw"]
 
-[ext_resource type="Script" uid="uid://d2ye3k3e4rc1u" path="res://Scripts/sprite_2d.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://db2halt3thu7q" path="res://Scripts/circleShapeWhite.gd" id="1_xxwah"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sh265"]
 radius = 7.0
@@ -11,4 +11,4 @@ radius = 7.0
 shape = SubResource("CircleShape2D_sh265")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-script = ExtResource("1_4flbx")
+script = ExtResource("1_xxwah")

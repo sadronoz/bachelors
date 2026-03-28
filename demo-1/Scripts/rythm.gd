@@ -3,7 +3,7 @@ var canMove = false
 
 var beatMap = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var files = []
-var rawbeatmap = []
+#var rawbeatmap = []
 var oncomingIndex
 var rng = RandomNumberGenerator.new()
 
@@ -26,6 +26,8 @@ func _on_timer_timeout() -> void:
 		print(tolerance/2)
 		playSound()
 		await get_tree().create_timer(tolerance).timeout
+		# TODO enemy moves here
+		Singleton.set_move_time()
 		canMove = false	
 	beatTimer.start()
 

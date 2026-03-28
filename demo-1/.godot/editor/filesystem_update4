@@ -1,5 +1,10 @@
-res://Scenes/UI/title_screen.tscn
-res://Scripts/rythm.gd
-res://Scenes/Game/game.tscn
 res://Scenes/Game/Rythm.tscn
+res://Scripts/enemy.gd
+res://Scripts/rythm.gd
+res://Scripts/player.gd
+res://Scenes/Game/game.tscn
+res://Scenes/Game/enemy.tscn
+res://Scripts/Singleton.gd
+res://Scenes/UI/title_screen.tscn
 res://Scenes/Game/player.tscn
+res://Scripts/action_gate.gd

@@ -8,6 +8,10 @@ const JUMP_VELOCITY = -300.0
 var move_time = 0.0
 var move_duration = 0.1   # délka pohybu v sekundách
 var move_direction = Vector2.ZERO
+var windowConsumed = false # TODO possible solution but probably will be removed later
+
+func _ready() -> void:
+	Singleton.player = self
 
 func _physics_process(delta: float) -> void:
 	if move_time > 0:
