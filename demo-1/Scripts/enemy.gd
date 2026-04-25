@@ -2,17 +2,15 @@ extends CharacterBody2D
 
 var speed = 130
 var move_time = 0.0
-var move_duration = 0.1   # délka pohybu v sekundách
+var move_duration = 0.1
 var move_direction = Vector2.ZERO
 var hit_this_beat = false
 
 func _physics_process(_delta: float) -> void:
-	# most here is for testing purposes
 	var player_pos = Singleton.get_player_position()
 	move_direction = global_position.direction_to(player_pos)
 	
 	if Singleton.move_time_enemies > 0:
-		#move_time -= delta
 		velocity = move_direction * speed
 		
 		for i in get_slide_collision_count():

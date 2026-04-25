@@ -48,7 +48,7 @@ func remove_hp() -> void:
 	currentHP -= 1
 	if checkHp():
 		print("Player died!")
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://Scenes/UI/end_screen.tscn")
 
 func checkHp() -> bool:
 	if currentHP == 0:

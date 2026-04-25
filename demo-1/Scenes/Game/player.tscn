@@ -27,7 +27,6 @@ script = ExtResource("2_lq2ly")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponAnchor/WeaponHitbox"]
 position = Vector2(13, 4.76837e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_xxwah")
 debug_color = Color(0.979888, 0, 0.3843, 0.42)
 
