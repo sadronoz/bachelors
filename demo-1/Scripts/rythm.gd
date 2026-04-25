@@ -8,6 +8,7 @@ var oncomingIndex
 var rng = RandomNumberGenerator.new()
 
 @onready var beatTimer = get_node("Timer")
+@onready var vignette = $"../BeatVisualisation/Vignette"
 var lenghtBetweenBeats
 var tolerance
 
@@ -25,8 +26,8 @@ func _on_timer_timeout() -> void:
 		canMove = true
 		print(tolerance/2)
 		playSound()
+		flash_border()
 		await get_tree().create_timer(tolerance).timeout
-		# TODO enemy moves here
 		Singleton.set_move_time()
 		canMove = false	
 	beatTimer.start()
@@ -107,3 +108,15 @@ func decide_tolerance_for_interval():
 
 func _on_drums_finished() -> void:
 	$Sounds/Drums.stop()
+
+func flash_border(duration: float = 0.5):
+	# Pokud chceš měnit barvu dynamicky (volitelné):
+	#vignette.material.set_shader_parameter("color", color)
+	
+	var tween = create_tween()
+	
+	# 1. Rychle rozsvítit na alfu 1.0
+	tween.tween_property(vignette, "modulate:a", 1.0, 0.1)
+	
+	# 2. Pomalu zhasnout na alfu 0.0
+	tween.tween_property(vignette, "modulate:a", 0.0, duration).set_trans(Tween.TRANS_SINE)

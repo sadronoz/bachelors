@@ -15,3 +15,6 @@ func get_player_position() -> Vector2:
 	
 func set_move_time() -> void:
 	move_time_enemies = move_duration_enemies
+
+func remove_hp() -> void:
+	player.remove_hp()

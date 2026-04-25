@@ -9,6 +9,8 @@ var move_time = 0.0
 var move_duration = 0.1   # délka pohybu v sekundách
 var move_direction = Vector2.ZERO
 var windowConsumed = false # TODO possible solution but probably will be removed later
+var maxHP = 3
+var currentHP = 3
 
 func _ready() -> void:
 	Singleton.player = self
@@ -34,4 +36,14 @@ func start_move(direction: Vector2):
 
 func get_input_direction() -> Vector2:
 	return Input.get_vector("Move_left", "Move_right", "Move_up", "Move_down")
-	
+
+func remove_hp() -> void:
+	currentHP -= 1
+	if checkHp():
+		print("Player died!")
+		get_tree().quit()
+
+func checkHp() -> bool:
+	if currentHP == 0:
+		return true
+	else: return false
