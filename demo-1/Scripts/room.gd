@@ -9,42 +9,53 @@ func setup_room(coords: Vector2i, n:bool, s:bool, e:bool, w:bool):
 	$East.visible = e
 	$West.visible = w
 	
-	
-
-func transition_player(player, direction):
-	# 1. Calculate the neighbor's grid coordinates
-	var target_grid_pos = grid_pros
-	var entry_marker_name = ""
-
-	if direction == "North": 
-		target_grid_pos.y -= 1
-		entry_marker_name = "South"
-	elif direction == "South":
-		target_grid_pos.y += 1
-		entry_marker_name = "North"
-	elif direction == "East":
-		target_grid_pos.x += 1
-		entry_marker_name = "West"
-	elif direction == "West":
-		target_grid_pos.x -= 1
-		entry_marker_name = "East"
-
-	# 2. Find the actual Room node in the dungeon
-	# This assumes your rooms are all children of the DungeonGenerator
-	for room in get_parent().get_children():
-		if room is Node2D and room.grid_pros == target_grid_pos:
-			# Found the room! Now find the marker inside it
-			var marker = room.get_node(entry_marker_name)
-			
-			# 3. Teleport!
-			player.global_position = marker.global_position
-			
-			# 4. Move Camera
-			move_camera(room.global_position)
-			break
+	$North/Area2DNorth/CollisionNorth.disabled = !n
+	$South/Area2DSouth/CollisionSouth.disabled = !s
+	$East/Area2DEast/CollisionEast.disabled = !e
+	$West/Area2DWest/CollisionWest.disabled = !w
 
 func move_camera(target_pos):
 	var camera = get_viewport().get_camera_2d()
 	if camera:
 		var tween = create_tween()
 		tween.tween_property(camera, "global_position", target_pos, 0.4).set_trans(Tween.TRANS_SINE)
+
+
+func _on_area_2d_north_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		var target_marker = $North
+		
+		body.global_position = target_marker.global_position
+		
+		var next_room_pos = global_position + Vector2(0, -160) 
+		move_camera(next_room_pos)
+
+
+func _on_area_2d_east_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		var target_marker = $East
+		
+		body.global_position = target_marker.global_position
+		
+		var next_room_pos = global_position + Vector2(288, 0) 
+		move_camera(next_room_pos)
+
+
+func _on_area_2d_west_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		var target_marker = $West
+		
+		body.global_position = target_marker.global_position
+		
+		var next_room_pos = global_position + Vector2(-288, 0) 
+		move_camera(next_room_pos)
+
+
+func _on_area_2d_south_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		var target_marker = $South
+		
+		body.global_position = target_marker.global_position
+		
+		var next_room_pos = global_position + Vector2(0, 160) 
+		move_camera(next_room_pos)

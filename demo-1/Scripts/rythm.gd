@@ -26,7 +26,6 @@ func _on_timer_timeout() -> void:
 		canMove = true
 		print(tolerance/2)
 		playSound()
-		flash_border()
 		await get_tree().create_timer(tolerance).timeout
 		Singleton.set_move_time()
 		canMove = false	
@@ -78,6 +77,7 @@ func get_nth_sound(n: int):
 
 #Playing correct sound
 func playSound():
+	flash_border()
 	var sound_path = get_nth_sound(beatMap[oncomingIndex])
 	print(sound_path)
 	

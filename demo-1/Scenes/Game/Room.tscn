@@ -17,46 +17,51 @@ size = Vector2(6, 4)
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_xyefe")
-metadata/_edit_horizontal_guides_ = [80.0]
+metadata/_edit_horizontal_guides_ = [-80.0]
 metadata/_edit_vertical_guides_ = [144.0]
 
 [node name="North" type="Marker2D" parent="."]
-position = Vector2(0, -88)
+position = Vector2(0, -100)
 
-[node name="Area2D" type="Area2D" parent="North"]
-position = Vector2(0, 18)
+[node name="Area2DNorth" type="Area2D" parent="North"]
+position = Vector2(0, 30)
 
-[node name="CollisionNorth" type="CollisionShape2D" parent="North/Area2D"]
+[node name="CollisionNorth" type="CollisionShape2D" parent="North/Area2DNorth"]
 shape = SubResource("RectangleShape2D_i0gje")
 
 [node name="East" type="Marker2D" parent="."]
-position = Vector2(151, 0)
+position = Vector2(165, 0)
 
-[node name="Area2D" type="Area2D" parent="East"]
-position = Vector2(-17, 0)
+[node name="Area2DEast" type="Area2D" parent="East"]
+position = Vector2(-31, 0)
 
-[node name="CollisionEast" type="CollisionShape2D" parent="East/Area2D"]
+[node name="CollisionEast" type="CollisionShape2D" parent="East/Area2DEast"]
 shape = SubResource("RectangleShape2D_oiqjn")
 
 [node name="West" type="Marker2D" parent="."]
-position = Vector2(-151, 0)
+position = Vector2(-165, 0)
 
-[node name="Area2D" type="Area2D" parent="West"]
-position = Vector2(17, 0)
+[node name="Area2DWest" type="Area2D" parent="West"]
+position = Vector2(31, 0)
 
-[node name="CollisionWest" type="CollisionShape2D" parent="West/Area2D"]
+[node name="CollisionWest" type="CollisionShape2D" parent="West/Area2DWest"]
 shape = SubResource("RectangleShape2D_buf7k")
 
 [node name="South" type="Marker2D" parent="."]
-position = Vector2(0, 88)
+position = Vector2(0, 109)
 
-[node name="Area2D" type="Area2D" parent="South"]
-position = Vector2(0, -18)
+[node name="Area2DSouth" type="Area2D" parent="South"]
+position = Vector2(0, -40)
 
-[node name="CollisionSouth" type="CollisionShape2D" parent="South/Area2D"]
+[node name="CollisionSouth" type="CollisionShape2D" parent="South/Area2DSouth"]
 shape = SubResource("RectangleShape2D_gc3m2")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_i0gje")
 format = 2
 layer_0/tile_data = PackedInt32Array(655342, 1048577, 6, 655343, 1048577, 6, 655344, 1048577, 6, 655345, 1048577, 6, 655346, 1048577, 6, 655347, 1048577, 6, 655348, 1048577, 6, 655349, 1048577, 6, 655350, 1048577, 6, 655351, 1048577, 6, 655352, 1048577, 6, 655353, 1048577, 6, 655354, 1048577, 6, 655355, 1048577, 6, 655356, 1048577, 6, 655357, 1048577, 6, 655358, 1048577, 6, 655359, 1048577, 6, 589824, 1048577, 6, 589825, 1048577, 6, 589826, 1048577, 6, 589827, 1048577, 6, 589828, 1048577, 6, 589829, 1048577, 6, 589830, 1048577, 6, 589831, 1048577, 6, 589832, 1048577, 6, 589833, 1048577, 6, 589834, 1048577, 6, 589835, 1048577, 6, 589836, 1048577, 6, 589837, 1048577, 6, 589838, 1048577, 6, 589839, 1048577, 6, 589840, 1048577, 6, 589841, 1048577, 6, -655343, 1048577, 6, -589807, 1048577, 6, -524271, 1048577, 6, -458735, 1048577, 6, -393199, 1048577, 6, -327663, 1048577, 6, -262127, 1048577, 6, -196591, 1048577, 6, -131055, 1048577, 6, -65519, 1048577, 6, 17, 1048577, 6, 65553, 1048577, 6, 131089, 1048577, 6, 196625, 1048577, 6, 262161, 1048577, 6, 327697, 1048577, 6, 393233, 1048577, 6, 458769, 1048577, 6, 524305, 1048577, 6, -589842, 1048577, 6, -589841, 1048577, 6, -589840, 1048577, 6, -589839, 1048577, 6, -589838, 1048577, 6, -589837, 1048577, 6, -589836, 1048577, 6, -589835, 1048577, 6, -589834, 1048577, 6, -589833, 1048577, 6, -589832, 1048577, 6, -589831, 1048577, 6, -589830, 1048577, 6, -589829, 1048577, 6, -589828, 1048577, 6, -589827, 1048577, 6, -589826, 1048577, 6, -589825, 1048577, 6, -655360, 1048577, 6, -655359, 1048577, 6, -655358, 1048577, 6, -655357, 1048577, 6, -655356, 1048577, 6, -655355, 1048577, 6, -655354, 1048577, 6, -655353, 1048577, 6, -655352, 1048577, 6, -655351, 1048577, 6, -655350, 1048577, 6, -655349, 1048577, 6, -655348, 1048577, 6, -655347, 1048577, 6, -655346, 1048577, 6, -655345, 1048577, 6, -655344, 1048577, 6, -524306, 1048577, 6, -458770, 1048577, 6, -393234, 1048577, 6, -327698, 1048577, 6, -262162, 1048577, 6, -196626, 1048577, 6, -131090, 1048577, 6, -65554, 1048577, 6, -18, 1048577, 6, 65518, 1048577, 6, 131054, 1048577, 6, 196590, 1048577, 6, 262126, 1048577, 6, 327662, 1048577, 6, 393198, 1048577, 6, 458734, 1048577, 6, 524270, 1048577, 6, 589806, 1048577, 6)
+
+[connection signal="body_entered" from="North/Area2DNorth" to="." method="_on_area_2d_north_body_entered"]
+[connection signal="body_entered" from="East/Area2DEast" to="." method="_on_area_2d_east_body_entered"]
+[connection signal="body_entered" from="West/Area2DWest" to="." method="_on_area_2d_west_body_entered"]
+[connection signal="body_entered" from="South/Area2DSouth" to="." method="_on_area_2d_south_body_entered"]
