@@ -1,14 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://0elh6scifikw"]
+[gd_scene load_steps=6 format=3 uid="uid://0elh6scifikw"]
 
 [ext_resource type="Script" uid="uid://db2halt3thu7q" path="res://Scripts/circleShapeWhite.gd" id="1_xxwah"]
+[ext_resource type="Script" uid="uid://cae4kto4apmc8" path="res://Scripts/weapon_hitbox.gd" id="2_lq2ly"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sh265"]
 radius = 7.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxwah"]
+size = Vector2(19, 3)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xxwah"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sh265")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 script = ExtResource("1_xxwah")
+
+[node name="WeaponAnchor" type="Node2D" parent="."]
+
+[node name="WeaponHitbox" type="Area2D" parent="WeaponAnchor"]
+position = Vector2(9, 0)
+script = ExtResource("2_lq2ly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeaponAnchor/WeaponHitbox"]
+position = Vector2(13, 4.76837e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_xxwah")
+debug_color = Color(0.979888, 0, 0.3843, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="WeaponAnchor/WeaponHitbox"]
+position = Vector2(13, 0)
+scale = Vector2(19, 3)
+texture = SubResource("CanvasTexture_xxwah")
