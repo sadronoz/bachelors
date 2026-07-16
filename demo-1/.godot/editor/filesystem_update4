@@ -1,10 +1,11 @@
 res://Scenes/UI/title_screen.tscn
 res://Scripts/dungeonGenerator.gd
 res://main_tileset.tres
-res://Scripts/title_screen.gd
 res://Scenes/Game/game.tscn
 res://Scenes/Game/Rythm.tscn
 res://Scenes/Game/player.tscn
 res://Scenes/Game/enemy.tscn
 res://Scenes/UI/end_screen.tscn
-res://Scripts/rythm.gd
+res://Scripts/title_screen.gd
+res://Scripts/Singleton.gd
+res://Scripts/utils/folder_management.gd

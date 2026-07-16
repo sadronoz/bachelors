@@ -1,11 +1,11 @@
 extends Control
 
 @onready var grid = $GridContainer
-var sound_folder
 
+var sound_folder
 var gameInstance
 var cells = []
-var cell_size = Vector2(50, 50)
+var cell_size = Vector2(25, 50)
 
 func _ready():	
 	for i in range(25):
@@ -21,7 +21,8 @@ func _ready():
 			"node": cell,
 			"active": false
 		})
-	checkFolders()
+	var folder_manager = FolderManagement.new()
+	folder_manager.checkFolders()
 
 func _on_cell_clicked(event, cell):
 	if event is InputEventMouseButton and event.pressed:
@@ -40,6 +41,7 @@ func get_beat_array():
 		beat.append(int(c.active))
 	return beat
 
+#New
 func _on_button_pressed():	
 	gameInstance = load("res://Scenes/Game/game.tscn").instantiate()
 	add_child(gameInstance)
@@ -50,28 +52,14 @@ func _on_button_pressed():
 	var rawbeat = get_beat_array()
 	rythm._changeRythm(rawbeat)
 
-func checkFolders():
-	var dir = DirAccess.open(OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS))
-	if not dir.dir_exists("RythmGame"):
-		createFolders()
-	elif not dir.dir_exists("RythmGame/Sounds") or DirAccess.get_files_at("RythmGame/Sounds").is_empty():
-		insertSounds()
-	sound_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/RhythmGame/Sounds"
+#Load
+func _on_load_button_pressed() -> void:
+	pass # Replace with function body.
 
-func createFolders():
-	var base_path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/RhythmGame"
-	insertSounds()
-	DirAccess.make_dir_recursive_absolute(base_path + "/Saves")
+#Settings
+func _on_settings_button_pressed() -> void:
+	pass # Replace with function body.
 
-func insertSounds():
-	var source_folder = "res://Sounds"
-	var target_folder = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/RhythmGame/Sounds"
-	
-	DirAccess.make_dir_recursive_absolute(target_folder)
-	var files = DirAccess.get_files_at(source_folder)
-	
-	for file in files:
-		var source_path = source_folder + "/" + file
-		var target_path = target_folder + "/" + file
-		DirAccess.copy_absolute(source_path, target_path)
-	print("Sounds copied!")
+#Quit
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
