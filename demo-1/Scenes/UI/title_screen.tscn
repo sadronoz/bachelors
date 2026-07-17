@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://db3h16b3tsopt"]
+[gd_scene load_steps=3 format=3 uid="uid://db3h16b3tsopt"]
 
 [ext_resource type="Script" uid="uid://cl6tnddonxs62" path="res://Scripts/title_screen.gd" id="1_xsyet"]
+[ext_resource type="Theme" uid="uid://ctj43mijlxxhj" path="res://Textures/new_theme.tres" id="2_dnytt"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -26,18 +27,22 @@ grow_horizontal = 2
 text = "Bachelors"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+top_level = true
+custom_minimum_size = Vector2(350, 300)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = -92.5
-offset_right = 180.0
-offset_bottom = 92.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_dnytt")
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
@@ -64,11 +69,17 @@ offset_bottom = 605.0
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 402.0
-offset_top = 467.0
-offset_right = 741.0
-offset_bottom = 519.0
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 0
 text = "Please select your rythm pattern
 Each rectangle is 0,2s interval"
 horizontal_alignment = 1
