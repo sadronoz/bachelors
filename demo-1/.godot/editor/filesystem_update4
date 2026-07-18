@@ -1,5 +1,8 @@
 res://Scenes/Game/Rythm.tscn
+res://Textures/new_theme.tres
 res://Scripts/dungeonGenerator.gd
 res://Scenes/UI/title_screen.tscn
-res://Textures/new_theme.tres
 res://Scripts/title_screen.gd
+res://main_tileset.tres
+res://Scenes/Game/game.tscn
+res://Scripts/main.gd
